@@ -119,20 +119,20 @@ DASHBOARD_HTML = """
 """
 
 
-def check_openrouter():
-    api_key = os.environ.get("OPENROUTER_API_KEY")
+def check_groq():
+    api_key = os.environ.get("GROQ_API_KEY")
     if not api_key:
-        return {"name": "OpenRouter API", "icon": "🤖", "status": "skip", "detail": "API key not configured"}
+        return {"name": "Groq API", "icon": "🤖", "status": "skip", "detail": "API key not configured"}
     try:
         from openai import OpenAI
-        client = OpenAI(base_url="https://openrouter.ai/api/v1", api_key=api_key, timeout=15.0)
+        client = OpenAI(base_url="https://api.groq.com/openai/v1", api_key=api_key, timeout=15.0)
         resp = client.chat.completions.create(
-            model="openai/gpt-oss-20b:free",
+            model="llama-3.3-70b-versatile",
             messages=[{"role": "user", "content": "Say ok"}],
         )
-        return {"name": "OpenRouter API", "icon": "🤖", "status": "pass", "detail": "Connected and responding"}
+        return {"name": "Groq API", "icon": "🤖", "status": "pass", "detail": "Connected and responding"}
     except Exception as e:
-        return {"name": "OpenRouter API", "icon": "🤖", "status": "fail", "detail": str(e)[:60]}
+        return {"name": "Groq API", "icon": "🤖", "status": "fail", "detail": str(e)[:60]}
 
 
 def check_supabase():
@@ -161,7 +161,7 @@ def health():
 
 @app.route("/")
 def home():
-    services = [check_openrouter(), check_supabase(), check_render()]
+    services = [check_groq(), check_supabase(), check_render()]
     all_pass = all(s["status"] == "pass" for s in services)
     timestamp = time.strftime("%Y-%m-%d %H:%M:%S UTC", time.gmtime())
     return render_template_string(DASHBOARD_HTML, services=services, all_pass=all_pass, timestamp=timestamp)
