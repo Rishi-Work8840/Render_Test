@@ -1,0 +1,6 @@
+feature1,feature2,insight
+lifetime_tenure_with_upgrades,total_revenues,"Positive correlation: longer tenure with upgrades increases revenue. Matters for customer retention, suggests offering loyalty rewards."
+days_since_last_upgrade,total_redemptions,"Inverse relationship: recent upgrades reduce redemptions. Matters for revenue protection, suggests regular upgrade promotions."
+monthly_usage_days_change_ratio,weekly_5g_kb_usage_change_ratio,"Positive correlation: increased usage days drives 5G data growth. Matters for network planning, suggests optimizing 5G infrastructure."
+ivr_call_recency,case_count_3_mths,"Positive correlation: recent IVR calls increase case counts. Matters for support optimization, suggests proactive issue resolution."
+auto_refill_enrolled,current_plan_value,"Positive correlation: auto-refill enrollment increases plan value. Matters for revenue growth, suggests promoting auto-refill to high-value customers."
